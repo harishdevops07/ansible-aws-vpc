@@ -113,5 +113,33 @@
         tags:
           Name: vprofile-public-RT
       register: publicRT1out
+#Create NAT Gateway for routing traffic b/w private subnets to public subnets or igw/outside world
+    - name: NAT Gateway setup
+      ec2_vpc_nat_gateway:
+        state: "{{state}}"
+        region: "{{region}}"
+        subnet_id: "{{pubsub1out.subnet.id}}"
+        wait: yes
+        if_exist_do_not_create: true
+        resource_tags:
+          Name: vprofile-igw
+      register: natgwout  
+
+# create route table for NAT gateway
+    - name: NAT Route Table
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcout.vpc.id}}"
+        state: "{{state}}"
+        region: "{{region}}"
+        subnets: 
+          - "{{privatesub1out.subnet.id}}"
+          - "{{privatesub2out.subnet.id}}"
+          - "{{privatesub3out.subnet.id}}"
+        routes: 
+          - dest: 0.0.0.0/0
+            gateway_id: "{{natgwout.nat_gateway_id}}"
+        tags:
+          Name: vprofile-private-RT
+      register: privateRT1out
       
                       
