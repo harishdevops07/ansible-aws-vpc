@@ -87,4 +87,15 @@
         map_public: yes
         resource_tags:
           Name: vprofile-privatesub3
-      register: privatesub3out            
+      register: privatesub3out
+
+    - name: Internet Gateway setup
+      ec2_vpc_igw:
+        vpc_id: "{{vpcout.vpc.id}}"
+        state: "{{state}}"
+        region: "{{region}}"
+        resource_tags:
+          Name: vprofile-igw
+      register: igwout  
+
+                      
