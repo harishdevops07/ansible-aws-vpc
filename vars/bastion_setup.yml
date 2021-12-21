@@ -1,0 +1,3 @@
+bastion_ami: ami-061ac2e015473fbe2
+region: us-east-1
+myip: 49.36.180.142/32
