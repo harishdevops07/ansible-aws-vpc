@@ -14,7 +14,7 @@
         tenancy: default
         state: "{{state}}"
       register: vpcout
-    - degug:
+    - debug:
         var: vpcout       
 
     - name: create public subnet 1 in zone 1
