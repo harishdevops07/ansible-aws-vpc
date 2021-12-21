@@ -1,4 +1,4 @@
-vpc_name: Vprofile-vpc
+vpc_name: Vprofile-vpc123
 #VPC range
 vpcCidr: '172.20.0.0/16'
 #6 subnet ranges
@@ -10,7 +10,7 @@ privateSubnet2Cidr: 172.20.5.0/24
 privateSubnet3Cidr: 172.20.6.0/24
 
 #Region name
-region-name: us-east-1
+region: us-east-1
 #availability zone names
 az1: us-east-1a
 az2: us-east-1b
